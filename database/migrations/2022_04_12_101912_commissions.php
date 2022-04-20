@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('commissions', function (Blueprint $table){
             $table->id();
+            $table->string('user_id', 63);
             $table->string('com_name', 63);
             $table->tinyInteger('com_age');
             $table->string('com_gender', 63);

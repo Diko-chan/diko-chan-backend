@@ -16,6 +16,7 @@ class Commission extends JsonResource
     {
         return [
             'id' => $this->id,
+            'user_id' => $this->user_id,
             'com_name' => $this->com_name,
             'com_age' => $this->com_age,
             'com_gender' => $this->com_gender,
