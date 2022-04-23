@@ -19,10 +19,10 @@ use App\Http\Controllers\API\CommissionController;
 */
 Route::post('login', [AuthController::class, 'signin']);
 Route::post('register', [AuthController::class, 'signup']);
-Route::post('commissions', [AuthController::class, 'commissions']);
+//Route::post('commissions', [AuthController::class, 'commissions']);
 
 Route::get('public/artworks', [ArtworkController::class, 'index']);
-Route::get('public/commissions', [CommissionController::class, 'index']);
+//Route::get('public/commissions', [CommissionController::class, 'index']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -34,4 +34,5 @@ Route::middleware('auth:sanctum')->group( function () {
 
 Route::middleware('auth:sanctum')->group( function () {
     Route::resource('commission', CommissionController::class);
+    Route::post('commissions', [CommissionController::class, 'store']);
 });
