@@ -7,17 +7,22 @@ use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\Commission;
 use App\Http\Resources\Commission as CommissionResource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
- 
+
 class CommissionController extends BaseController
 {
     public function index()
     {
-        $commisssions = Commission::all();
-
-        //$commisssions = Commission->['user_id'] == Auth::user()->id;
-
-        return $this->sendResponse(CommissionResource::collection($commisssions), 'Commissions fetched.');
+        if (Auth::user()->userType == 0) {
+            $commissions = Commission::orderBy('user_id')
+                ->where('user_id', Auth::user()->id)
+                ->get();
+        } else {
+            $commissions = Commission::orderBy('user_id')
+                ->get();
+        }
+        return $this->sendResponse(CommissionResource::collection($commissions), 'Commissions fetched.');
     }
 
     public function store(Request $request)
@@ -30,7 +35,7 @@ class CommissionController extends BaseController
             'com_details' => 'string',
         ]);
 
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return $this->sendError('Error validation', $validator->errors());
         }
 

@@ -40,12 +40,13 @@ class AuthController extends BaseController
         }
 
         $input = $request->all();
-        $input['userType'] = 0;
+        //$input['userType'] = $input->userType;
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $success['token'] =  $user->createToken('MyAuthApp')->plainTextToken;
         $success['name'] =  $user->name;
-        $success['userType'] =  0;
+        $success['userType'] =  $input['userType'];
+        
    
         return $this->sendResponse($success, 'User created successfully.');
        
