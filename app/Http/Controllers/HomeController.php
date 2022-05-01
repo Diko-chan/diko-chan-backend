@@ -25,6 +25,5 @@ class HomeController extends Controller
             'commissionUnkChar' => $commissionUnkChar,
             'commissionOtherChar' => $commissionOtherChar,
         ]);
-
     }
 }

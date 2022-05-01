@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Auth;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,56 +15,43 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        \App\Models\Artwork::factory()->create([
-            'artwork_name' => 'silvervale',
-            'image_name' => 'silvervalefanart.png',
+        \App\Models\User::factory()->create([
+            'id' => '1',
+            'name' => 'admin',
+            'email' => 'admin@dikochan.com',
+            'password' => '$2y$10$JDuuOLjR0/TssIU/AGNjW.uXCoU0PpfD3GrXISoH2nAkCzVPqK2nu',
+            'userType' => '1',
         ]);
 
-        \App\Models\Artwork::factory()->create([
-            'artwork_name' => 'adultgorou',
-            'image_name' => 'adultgoroudone.png',
+        \App\Models\User::factory()->create([
+            'id' => '2',
+            'name' => 'Juliska',
+            'email' => 'juli0123@gmail.com',
+            'password' => '$2y$10$JDuuOLjR0/TssIU/AGNjW.uXCoU0PpfD3GrXISoH2nAkCzVPqK2nu',
+            'userType' => '0',
         ]);
 
-        \App\Models\Artwork::factory()->create([
-            'artwork_name' => 'chibialbedo',
-            'image_name' => 'albedo.png',
-        ]);
-        
-        \App\Models\Artwork::factory()->create([
-            'artwork_name' => 'ayato',
-            'image_name' => 'ayato.png',
-        ]);
 
-        \App\Models\Artwork::factory()->create([
-            'artwork_name' => 'baizhu',
-            'image_name' => 'baizhu.png',
-        ]);
-
-        \App\Models\Artwork::factory()->create([
-            'artwork_name' => 'bunny',
-            'image_name' => 'bunny.png',
-        ]);
-
-        \App\Models\Artwork::factory()->create([
-            'artwork_name' => 'vex',
-            'image_name' => 'adultgoroudone.png',
-        ]);
-
-        \App\Models\Artwork::factory()->create([
-            'artwork_name' => 'adultgorou',
-            'image_name' => 'adultgoroudone.png',
-        ]);
-
+        // Hozzáad a "Juliska" felhasználónak megrendeléseket
 
         \App\Models\Commission::factory()->create([
-            'com_name' => 'mycommission Lajos',
-            'com_age' => '23',
-            'com_gender' => 'Male',
-            'com_details' => 'megtalalhato',
-            'com_image' => NULL,
-            'com_status' => '0',
+            'user_id' => '2',
+            'com_name' => 'Laran',
+            'com_age' => '15',
+            'com_gender' => 'male',
+            'com_details' => 'He has blue eyes, short brown hair and a piercing in his nose. I want a portrait commission.',
+            'com_image' => '',
+            'com_status' => '4',
+        ]);
+
+        \App\Models\Commission::factory()->create([
+            'user_id' => '2',
+            'com_name' => 'Ori',
+            'com_age' => '20',
+            'com_gender' => 'other',
+            'com_details' => 'She is a robot. she doesnt really has a gender but we give her a girlie face. Her face is girlish but bald, make it green and grey partial',
+            'com_image' => '',
+            'com_status' => '2',
         ]);
     }
 }
